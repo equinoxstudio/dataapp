@@ -429,14 +429,14 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                           );
                         },
                       ),
-                      StreamBuilder<List<Details2Record>>(
-                        stream: queryDetails2Record(),
+                      StreamBuilder<List<WorkingRecord>>(
+                        stream: queryWorkingRecord(),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
                             return Center(child: CircularProgressIndicator());
                           }
-                          List<Details2Record> listViewDetails2RecordList =
+                          List<WorkingRecord> listViewWorkingRecordList =
                               snapshot.data;
                           // Customize what your widget looks like with no query results.
                           if (snapshot.data.isEmpty) {
@@ -450,10 +450,10 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                           return ListView.builder(
                             padding: EdgeInsets.zero,
                             scrollDirection: Axis.vertical,
-                            itemCount: listViewDetails2RecordList.length,
+                            itemCount: listViewWorkingRecordList.length,
                             itemBuilder: (context, listViewIndex) {
-                              final listViewDetails2Record =
-                                  listViewDetails2RecordList[listViewIndex];
+                              final listViewWorkingRecord =
+                                  listViewWorkingRecordList[listViewIndex];
                               return Padding(
                                 padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                                 child: InkWell(
@@ -500,7 +500,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 20, 0, 0),
                                             child: Text(
-                                              'Description:',
+                                              listViewWorkingRecord.description,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
@@ -512,7 +512,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 5, 0, 0),
                                             child: Text(
-                                              'Project Cost: ',
+                                              listViewWorkingRecord.cost,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
@@ -525,7 +525,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 5, 0, 0),
                                             child: Text(
-                                              'Tax: ',
+                                              listViewWorkingRecord.tax,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
@@ -538,7 +538,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 5, 0, 0),
                                             child: Text(
-                                              'Earning: ',
+                                              listViewWorkingRecord.earning,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
@@ -551,7 +551,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 5, 0, 0),
                                             child: Text(
-                                              'Gig: ',
+                                              listViewWorkingRecord.gig,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
@@ -564,7 +564,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 5, 0, 0),
                                             child: Text(
-                                              'Due  Date: ',
+                                              listViewWorkingRecord.duedate,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',

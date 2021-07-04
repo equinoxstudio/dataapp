@@ -4,12 +4,14 @@ import 'index.dart';
 import 'serializers.dart';
 import 'package:built_value/built_value.dart';
 
-part 'details2_record.g.dart';
+part 'working_record.g.dart';
 
-abstract class Details2Record
-    implements Built<Details2Record, Details2RecordBuilder> {
-  static Serializer<Details2Record> get serializer =>
-      _$details2RecordSerializer;
+abstract class WorkingRecord
+    implements Built<WorkingRecord, WorkingRecordBuilder> {
+  static Serializer<WorkingRecord> get serializer => _$workingRecordSerializer;
+
+  @nullable
+  String get description;
 
   @nullable
   String get cost;
@@ -27,57 +29,54 @@ abstract class Details2Record
   String get duedate;
 
   @nullable
-  String get description;
-
-  @nullable
   String get image;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
-  static void _initializeBuilder(Details2RecordBuilder builder) => builder
+  static void _initializeBuilder(WorkingRecordBuilder builder) => builder
+    ..description = ''
     ..cost = ''
     ..tax = ''
     ..earning = ''
     ..gig = ''
     ..duedate = ''
-    ..description = ''
     ..image = '';
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('details2');
+      FirebaseFirestore.instance.collection('working');
 
-  static Stream<Details2Record> getDocument(DocumentReference ref) => ref
+  static Stream<WorkingRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
-  Details2Record._();
-  factory Details2Record([void Function(Details2RecordBuilder) updates]) =
-      _$Details2Record;
+  WorkingRecord._();
+  factory WorkingRecord([void Function(WorkingRecordBuilder) updates]) =
+      _$WorkingRecord;
 
-  static Details2Record getDocumentFromData(
+  static WorkingRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(
           serializer, {...data, kDocumentReferenceField: reference});
 }
 
-Map<String, dynamic> createDetails2RecordData({
+Map<String, dynamic> createWorkingRecordData({
+  String description,
   String cost,
   String tax,
   String earning,
   String gig,
   String duedate,
-  String description,
   String image,
 }) =>
     serializers.toFirestore(
-        Details2Record.serializer,
-        Details2Record((d) => d
+        WorkingRecord.serializer,
+        WorkingRecord((w) => w
+          ..description = description
           ..cost = cost
           ..tax = tax
           ..earning = earning
           ..gig = gig
           ..duedate = duedate
-          ..description = description
           ..image = image));

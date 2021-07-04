@@ -232,19 +232,30 @@ class _DetailsWidgetState extends State<DetailsWidget> {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-              child: Image.network(
-                'https://picsum.photos/seed/153/600',
-                width: 400,
-                height: 300,
-                fit: BoxFit.cover,
-              ),
+            StreamBuilder<Details2Record>(
+              stream:
+                  Details2Record.getDocument(widget.pendingDetails.reference),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                final imageDetails2Record = snapshot.data;
+                return Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: Image.network(
+                    'https://picsum.photos/seed/153/600',
+                    width: 400,
+                    height: 300,
+                    fit: BoxFit.cover,
+                  ),
+                );
+              },
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
               child: Text(
-                'Description:',
+                widget.pendingDetails.description,
                 style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Poppins',
                   fontSize: 16,
@@ -254,7 +265,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
             Padding(
               padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
               child: Text(
-                'Project Cost: ',
+                widget.pendingDetails.cost,
                 style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Poppins',
                   fontSize: 12,
@@ -265,7 +276,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
             Padding(
               padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
               child: Text(
-                'Tax: ',
+                widget.pendingDetails.earning,
                 style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Poppins',
                   fontSize: 12,
@@ -276,7 +287,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
             Padding(
               padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
               child: Text(
-                'Earning: ',
+                widget.pendingDetails.earning,
                 style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Poppins',
                   fontSize: 12,
@@ -287,7 +298,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
             Padding(
               padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
               child: Text(
-                'Gig: ',
+                widget.pendingDetails.gig,
                 style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Poppins',
                   fontSize: 12,
@@ -298,7 +309,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
             Padding(
               padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
               child: Text(
-                'Due  Date: ',
+                widget.pendingDetails.duedate,
                 style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Poppins',
                   fontSize: 12,
