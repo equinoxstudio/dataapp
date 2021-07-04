@@ -6,11 +6,5 @@ service cloud.firestore {
     match /details2/{id} {
       allow read, write: if true;
     }
-
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /working/{id} {
-      allow read, write: if true;
-    }
   }
 }
