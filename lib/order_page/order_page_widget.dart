@@ -274,7 +274,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                       StreamBuilder<List<Details2Record>>(
                         stream: queryDetails2Record(
                           queryBuilder: (details2Record) =>
-                              details2Record.orderBy('image', descending: true),
+                              details2Record.orderBy('cost', descending: true),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -345,7 +345,8 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 20, 0, 0),
                                             child: Text(
-                                              'Description:',
+                                              listViewDetails2Record
+                                                  .description,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
@@ -357,7 +358,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 5, 0, 0),
                                             child: Text(
-                                              'Project Cost: ',
+                                              listViewDetails2Record.cost,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
@@ -370,7 +371,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 5, 0, 0),
                                             child: Text(
-                                              'Tax: ',
+                                              listViewDetails2Record.tax,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
@@ -383,7 +384,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 5, 0, 0),
                                             child: Text(
-                                              'Earning: ',
+                                              listViewDetails2Record.earning,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
@@ -396,7 +397,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 5, 0, 0),
                                             child: Text(
-                                              'Gig: ',
+                                              listViewDetails2Record.gig,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
@@ -409,7 +410,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 20, 5, 0, 0),
                                             child: Text(
-                                              'Due  Date: ',
+                                              listViewDetails2Record.duedate,
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
