@@ -222,39 +222,37 @@ class _DetailsWidgetState extends State<DetailsWidget> {
           ),
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xFFEEEEEE),
+      body: StreamBuilder<List<Details2Record>>(
+        stream: queryDetails2Record(
+          singleRecord: true,
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            StreamBuilder<List<Details2Record>>(
-              stream: queryDetails2Record(
-                queryBuilder: (details2Record) => details2Record.where('image',
-                    isEqualTo: widget.pendingDetails.image),
-                singleRecord: true,
+        builder: (context, snapshot) {
+          // Customize what your widget looks like when it's loading.
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
+          List<Details2Record> containerDetails2RecordList = snapshot.data;
+          // Customize what your widget looks like with no query results.
+          if (snapshot.data.isEmpty) {
+            return Container(
+              height: 100,
+              child: Center(
+                child: Text('No results.'),
               ),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                List<Details2Record> imageDetails2RecordList = snapshot.data;
-                // Customize what your widget looks like with no query results.
-                if (snapshot.data.isEmpty) {
-                  return Container(
-                    height: 100,
-                    child: Center(
-                      child: Text('No results.'),
-                    ),
-                  );
-                }
-                final imageDetails2Record = imageDetails2RecordList.first;
-                return Padding(
+            );
+          }
+          final containerDetails2Record = containerDetails2RecordList.first;
+          return Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: Color(0xFFEEEEEE),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: Image.network(
                     'https://picsum.photos/seed/153/600',
@@ -262,150 +260,151 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                     height: 300,
                     fit: BoxFit.cover,
                   ),
-                );
-              },
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
-              child: Text(
-                widget.pendingDetails.description,
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 16,
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
-              child: Text(
-                widget.pendingDetails.cost,
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+                  child: Text(
+                    widget.pendingDetails.description,
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                      fontSize: 16,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
-              child: Text(
-                widget.pendingDetails.earning,
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
+                  child: Text(
+                    widget.pendingDetails.cost,
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
-              child: Text(
-                widget.pendingDetails.earning,
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
+                  child: Text(
+                    widget.pendingDetails.earning,
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
-              child: Text(
-                widget.pendingDetails.gig,
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
+                  child: Text(
+                    widget.pendingDetails.earning,
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
-              child: Text(
-                widget.pendingDetails.duedate,
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
+                  child: Text(
+                    widget.pendingDetails.gig,
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment(0, 1),
-                child: InkWell(
-                  onTap: () async {
-                    await showDialog(
-                      context: context,
-                      builder: (alertDialogContext) {
-                        return AlertDialog(
-                          title: Text('Confirm Start'),
-                          content: Text('You want to start this project?'),
-                          actions: [
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pop(alertDialogContext),
-                              child: Text('Cancel'),
-                            ),
-                            TextButton(
-                              onPressed: () async {
-                                Navigator.pop(alertDialogContext);
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: Text('Congrats'),
-                                      content: Text('Your Project has started'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
+                  child: Text(
+                    widget.pendingDetails.duedate,
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment(0, 1),
+                    child: InkWell(
+                      onTap: () async {
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: Text('Confirm Start'),
+                              content: Text('You want to start this project?'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    Navigator.pop(alertDialogContext);
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text('Congrats'),
+                                          content:
+                                              Text('Your Project has started'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
                                     );
+                                    ;
                                   },
-                                );
-                                ;
-                              },
-                              child: Text('Confirm'),
-                            ),
-                          ],
+                                  child: Text('Confirm'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderPageWidget(),
+                          ),
                         );
                       },
-                    );
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => OrderPageWidget(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFEEEEEE),
-                    ),
-                    child: Align(
-                      alignment: Alignment(0, 0.1),
-                      child: Text(
-                        'Status',
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.bodyText1.override(
-                          fontFamily: 'Poppins',
-                          color: FlutterFlowTheme.primaryColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800,
+                      child: Container(
+                        width: double.infinity,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFEEEEEE),
+                        ),
+                        child: Align(
+                          alignment: Alignment(0, 0.1),
+                          child: Text(
+                            'Status',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.bodyText1.override(
+                              fontFamily: 'Poppins',
+                              color: FlutterFlowTheme.primaryColor,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ),
-            )
-          ],
-        ),
+                )
+              ],
+            ),
+          );
+        },
       ),
     );
   }
