@@ -7,12 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DetailsWidget extends StatefulWidget {
-  DetailsWidget({
-    Key key,
-    this.pendingDetails,
-  }) : super(key: key);
-
-  final Details2Record pendingDetails;
+  DetailsWidget({Key key}) : super(key: key);
 
   @override
   _DetailsWidgetState createState() => _DetailsWidgetState();
@@ -264,7 +259,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
                   child: Text(
-                    widget.pendingDetails.description,
+                    containerDetails2Record.description,
                     style: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
                       fontSize: 16,
@@ -274,7 +269,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
                   child: Text(
-                    widget.pendingDetails.cost,
+                    containerDetails2Record.cost,
                     style: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
                       fontSize: 12,
@@ -285,7 +280,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
                   child: Text(
-                    widget.pendingDetails.earning,
+                    containerDetails2Record.tax,
                     style: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
                       fontSize: 12,
@@ -296,7 +291,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
                   child: Text(
-                    widget.pendingDetails.earning,
+                    containerDetails2Record.earning,
                     style: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
                       fontSize: 12,
@@ -307,7 +302,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
                   child: Text(
-                    widget.pendingDetails.gig,
+                    containerDetails2Record.gig,
                     style: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
                       fontSize: 12,
@@ -318,7 +313,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
                   child: Text(
-                    widget.pendingDetails.duedate,
+                    containerDetails2Record.duedate,
                     style: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
                       fontSize: 12,
