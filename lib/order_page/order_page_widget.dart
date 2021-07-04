@@ -274,7 +274,7 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                       StreamBuilder<List<Details2Record>>(
                         stream: queryDetails2Record(
                           queryBuilder: (details2Record) =>
-                              details2Record.orderBy('cost', descending: true),
+                              details2Record.orderBy('image', descending: true),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -331,10 +331,10 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          StreamBuilder<List<Details2Record>>(
-                                            stream: queryDetails2Record(
-                                              singleRecord: true,
-                                            ),
+                                          StreamBuilder<Details2Record>(
+                                            stream: Details2Record.getDocument(
+                                                listViewDetails2Record
+                                                    .reference),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
                                               if (!snapshot.hasData) {
@@ -342,20 +342,8 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                                     child:
                                                         CircularProgressIndicator());
                                               }
-                                              List<Details2Record>
-                                                  imageDetails2RecordList =
-                                                  snapshot.data;
-                                              // Customize what your widget looks like with no query results.
-                                              if (snapshot.data.isEmpty) {
-                                                return Container(
-                                                  height: 100,
-                                                  child: Center(
-                                                    child: Text('No results.'),
-                                                  ),
-                                                );
-                                              }
                                               final imageDetails2Record =
-                                                  imageDetails2RecordList.first;
+                                                  snapshot.data;
                                               return ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(10),

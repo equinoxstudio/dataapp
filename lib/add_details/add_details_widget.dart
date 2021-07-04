@@ -144,78 +144,53 @@ class _AddDetailsWidgetState extends State<AddDetailsWidget> {
                                 ],
                               ),
                             ),
-                            StreamBuilder<List<Details2Record>>(
-                              stream: queryDetails2Record(
-                                singleRecord: true,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                      child: CircularProgressIndicator());
-                                }
-                                List<Details2Record>
-                                    textFieldDetails2RecordList = snapshot.data;
-                                // Customize what your widget looks like with no query results.
-                                if (snapshot.data.isEmpty) {
-                                  return Container(
-                                    height: 100,
-                                    child: Center(
-                                      child: Text('No results.'),
-                                    ),
-                                  );
-                                }
-                                final textFieldDetails2Record =
-                                    textFieldDetails2RecordList.first;
-                                return Padding(
-                                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                  child: TextFormField(
-                                    controller: textController1,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      hintText: 'Description',
-                                      hintStyle:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 14,
-                                      ),
-                                      enabledBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.primaryColor,
-                                          width: 1,
-                                        ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.primaryColor,
-                                          width: 1,
-                                        ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      contentPadding:
-                                          EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                    ),
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 14,
-                                    ),
-                                    validator: (val) {
-                                      if (val.isEmpty) {
-                                        return 'Required';
-                                      }
-
-                                      return null;
-                                    },
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                              child: TextFormField(
+                                controller: textController1,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  hintText: 'Description',
+                                  hintStyle:
+                                      FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14,
                                   ),
-                                );
-                              },
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.primaryColor,
+                                      width: 1,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.primaryColor,
+                                      width: 1,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                  contentPadding:
+                                      EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                ),
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 14,
+                                ),
+                                validator: (val) {
+                                  if (val.isEmpty) {
+                                    return 'Required';
+                                  }
+
+                                  return null;
+                                },
+                              ),
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
