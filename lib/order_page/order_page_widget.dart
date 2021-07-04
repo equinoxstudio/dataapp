@@ -331,15 +331,42 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: Image.network(
-                                              'https://picsum.photos/seed/823/600',
-                                              width: double.infinity,
-                                              height: 150,
-                                              fit: BoxFit.cover,
+                                          StreamBuilder<List<Details2Record>>(
+                                            stream: queryDetails2Record(
+                                              singleRecord: true,
                                             ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                    child:
+                                                        CircularProgressIndicator());
+                                              }
+                                              List<Details2Record>
+                                                  imageDetails2RecordList =
+                                                  snapshot.data;
+                                              // Customize what your widget looks like with no query results.
+                                              if (snapshot.data.isEmpty) {
+                                                return Container(
+                                                  height: 100,
+                                                  child: Center(
+                                                    child: Text('No results.'),
+                                                  ),
+                                                );
+                                              }
+                                              final imageDetails2Record =
+                                                  imageDetails2RecordList.first;
+                                              return ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                child: Image.network(
+                                                  'https://picsum.photos/seed/823/600',
+                                                  width: double.infinity,
+                                                  height: 150,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              );
+                                            },
                                           ),
                                           Padding(
                                             padding: EdgeInsets.fromLTRB(
@@ -486,47 +513,15 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          StreamBuilder<List<WorkingRecord>>(
-                                            stream: queryWorkingRecord(
-                                              queryBuilder: (workingRecord) =>
-                                                  workingRecord.where('image',
-                                                      isEqualTo:
-                                                          listViewWorkingRecord
-                                                              .image),
-                                              singleRecord: true,
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.network(
+                                              'https://picsum.photos/seed/823/600',
+                                              width: double.infinity,
+                                              height: 150,
+                                              fit: BoxFit.cover,
                                             ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                    child:
-                                                        CircularProgressIndicator());
-                                              }
-                                              List<WorkingRecord>
-                                                  imageWorkingRecordList =
-                                                  snapshot.data;
-                                              // Customize what your widget looks like with no query results.
-                                              if (snapshot.data.isEmpty) {
-                                                return Container(
-                                                  height: 100,
-                                                  child: Center(
-                                                    child: Text('No results.'),
-                                                  ),
-                                                );
-                                              }
-                                              final imageWorkingRecord =
-                                                  imageWorkingRecordList.first;
-                                              return ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                child: Image.network(
-                                                  'https://picsum.photos/seed/823/600',
-                                                  width: double.infinity,
-                                                  height: 150,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              );
-                                            },
                                           ),
                                           Padding(
                                             padding: EdgeInsets.fromLTRB(

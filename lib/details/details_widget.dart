@@ -250,7 +250,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: Image.network(
-                    'https://picsum.photos/seed/153/600',
+                    containerDetails2Record.image,
                     width: 400,
                     height: 300,
                     fit: BoxFit.cover,
